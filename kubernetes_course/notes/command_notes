@@ -5,6 +5,9 @@ kubectl apply -f YAML_FILE.yaml
 kubectl describe pod POD_NAME
 - get pod info
 
+kubectl get pods -o wide
+- get all pods' info with IP addresses etc
+
 kubectl run IMAGE_NAME --image=IMAGE_TO_BE_USED --dry-run=[CLIENT/SERVER/NONE] -o yaml
 - this will create a sample yaml file that we can
 use to create an actual yaml file from scratch.
@@ -17,3 +20,16 @@ COMMAND > filename.extension
 - this will output the text output onto a file
 on your current directory.
 -Example: kubectl run IMAGE_NAME --dry-run=[CLIENT/SERVER/NONE] -o yaml > filename.extension
+
+kubectl delete pod POD_NAME
+- delete pod
+
+kubectl exec -it POD_NAME -- COMMANDS
+- runs commands inside the pod
+
+kubectl exec -it POD_NAME -- bash
+- seems to work when /bin/bash or /bin/sh doesnt work. sh has some weird behavior so
+let's use bash
+
+apt install PACKAGE_NAME
+- for installing things inside a pod
