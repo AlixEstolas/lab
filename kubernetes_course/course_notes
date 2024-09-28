@@ -1,0 +1,22 @@
+Containers
+ - mini-VM that has all the packages needed to run a single application
+
+ Virtual Machine
+ - self-explanatory but in this context the containers are run in these virtual machines in a many-to-one relationship
+ (many containers : one VM)
+
+ Docker
+ - allows developers to containerize an application so that it can run on any computer without needing
+ any setup aside from Docker's
+
+ Load Balancing
+ - it allowed a cluster of virtual machines to have unique processes so that not all of them are
+ working on the same user request for example.
+
+ Managing Clusters
+ - was a hassle pre-Kubernetes because each VM had its own operating system needed specifically for
+ each container.
+
+ Kubernetes
+ - Allowed an easy way to give instructions to a cluster such as: when to scale up, when to scale down,
+ what is the maximum size, what is the minimum size, etc. It also provided its own load balancer.
