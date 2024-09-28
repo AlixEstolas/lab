@@ -61,3 +61,6 @@ kubectl config set-context --current --namespace=NAME_SPACE
 - makes it so that the current context will always set the namespace as NAME_SPACE
 - if have multiple contexts, replace --current with the actual name of the context:
 example: kubectl config set-context CONTEXT_NAME --namespace=NAME_SPACE
+
+kubectl port-forward pods/POD_NAME POD_PORT
+- this will expose the port of the pod to your localhost
