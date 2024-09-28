@@ -50,6 +50,7 @@ Rancher
 
 Deployment
 - a deployment is a set of pods whose number depends on --replicas and image depends on --image
+- a deployment creates a Replicaset and the Replicaset creates the Pods
 
 Replica
 - when we deploy to Kubernetes we will often times have multiple pods of the same definition. -> replicaset=10
@@ -86,4 +87,6 @@ What happens when Deployment fails IN RollingDeploy
 to the other pods(50% of them if no max set)
 
 Namespace
-- logical grouping of resources.A mechanism of isolating resources within a single cluster
+- logical grouping of resources.
+A mechanism of isolating resources within a single cluster
+

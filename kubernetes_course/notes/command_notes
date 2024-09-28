@@ -18,6 +18,7 @@ use to create an actual yaml file from scratch.
 on the cluster but will immediately remove it; this is useful
 for figuring out missing values because it will spit out an error.
 - Client will not run it but will only show the YAML
+- PODS CAN ONLY USE RUN CANNOT CREATE A POD USING CREATE COMMAND
 
 COMMAND > filename.extension
 - this will output the text output onto a file
@@ -55,3 +56,8 @@ kubectl get namespaces
 
 kubectl create namespace [NAME]
 - create namespace
+
+kubectl config set-context --current --namespace=NAME_SPACE
+- makes it so that the current context will always set the namespace as NAME_SPACE
+- if have multiple contexts, replace --current with the actual name of the context:
+example: kubectl config set-context CONTEXT_NAME --namespace=NAME_SPACE
