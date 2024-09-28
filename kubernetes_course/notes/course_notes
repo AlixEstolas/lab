@@ -47,3 +47,43 @@ Initcontainer
 
 Rancher
 - is a Kubernetes client/server that we use to interface with Kubernetes
+
+Deployment
+- a deployment is a set of pods whose number depends on --replicas and image depends on --image
+
+Replica
+- when we deploy to Kubernetes we will often times have multiple pods of the same definition. -> replicaset=10
+
+Replicaset
+- a set of Replicas of a single pod definition
+- should be managed by Kubernetes Deployments, user-managed Replica sets are discouraged
+
+.spec.strategy.rollingUpdate.maxSurge: x% or x
+- means that if you have 10 replicas and there is a surge, it will only add another
+pod based on the % of the total replicas allowed or by the x amounts set. (25% or 1)
+
+.spec.strategy.rollingUpdate.maxUnavailable: x% or x
+- does not allow more pods to be unavailable than the amount set for this parameter
+
+.spec.strategy.type: Recreate or RollingDeploy
+- defines the type of deployment done when an update is applied
+
+Recreate
+- destroys ALL pods before deploying new pods
+
+RollingDeploy
+- deploys by batches so that an app can remain on while deploying
+
+.spec.template.spec.containers.command: ["COMMANDS HERE","-c"]
+- overrides the default command
+
+.spec.template.spec.containers.args: ["ARGUMENTS HERE like sleep 5; exit 1"]
+- is run after the default command
+- ``sleep 5; exit 1`` means "sleep for 30 seconds then exit with an error"
+
+What happens when Deployment fails IN RollingDeploy
+- it will throw RunContainerError as status then restart but will not continue the deployment
+to the other pods(50% of them if no max set)
+
+Namespace
+- logical grouping of resources.A mechanism of isolating resources within a single cluster
