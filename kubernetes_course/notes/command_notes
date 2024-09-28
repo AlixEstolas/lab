@@ -8,6 +8,9 @@ kubectl describe pod POD_NAME
 kubectl get pods -o wide
 - get all pods' info with IP addresses etc
 
+kubectl get pods POD_NAME -o yaml
+- -o means output, this command will output the yaml file of the pod
+
 kubectl edit pods POD_NAME
 - lets you edit the config of the pod
 
@@ -45,6 +48,9 @@ kubectl create deploy DEPLOYMENT_NAME --image=IMAGE_NAME --replicas:69
 kubectl get deployment.apps
 - shows all deployments
 
+kubectl get deployment.apps DEPLOYMENT_NAME -o yaml
+- -o means output, this command will output the yaml file of the deployment
+
 kubectl edit deployment.apps DEPLOYMENT_NAME
 - lets you edit the config of the deployment
 
@@ -53,6 +59,9 @@ kubectl delete deployment.apps DEPLOYMENT_NAME
 
 kubectl get namespaces
 - shows all namespaces
+
+kubectl get namespaces NAMESPACE_NAME -o yaml
+- -o means output, this command will output the yaml file of the namespace
 
 kubectl create namespace [NAME]
 - create namespace
@@ -64,3 +73,30 @@ example: kubectl config set-context CONTEXT_NAME --namespace=NAME_SPACE
 
 kubectl port-forward pods/POD_NAME POD_PORT
 - this will expose the port of the pod to your localhost
+
+rdctl
+- is the rancher desktop CLI. "The goal of this CLI is to enable any UI-based operation to be
+done from the command-line as well."
+
+rdctl shell bash
+- allows the user to perform commands to the Nodes as if they are using the
+rancher desktop UI
+note: if bash does not work, use sh "rdctl shell sh"
+
+rdctl shell sh -> cd etc/cni -> tree
+- this allows you to see what CNI your current node is using for networking.
+
+VIM COMMAND: :%s/STRING_TO_BE_REPLACED/NEW_STRING/g
+- replace strings. g means "globally"
+
+kubectl expose deployment DEPLOYMENT_NAME --port PORT_NUMBER
+- this will expose the deployment as a SERVICE
+
+kubectl get service SERVICE_NAME -o yaml
+- -o means output, this command will output the yaml file of the service
+
+kubectl delete service SERVICE_NAME
+- deletes service
+
+kubectl port-forward services/SERVICE_NAME PORT_NUMBER
+- exposes the port of a service

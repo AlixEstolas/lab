@@ -33,6 +33,8 @@ Control Pane
 Pod
 - Not a container but a collection of containers under Kubernetes. It containes
 storage, networking, and containers.
+- Gets its own IP address, by default can be connected to all pods on all nodes
+- Ephemeral. Disposable. Replaceable
 
 API Server
 - A Control plane has an API controller that listens to request from
@@ -89,4 +91,27 @@ to the other pods(50% of them if no max set)
 Namespace
 - logical grouping of resources.
 A mechanism of isolating resources within a single cluster
+
+Container Networking Interface (CNI) Plugin
+- Provides network connectivity to containers.
+- Like a wire that connects Network Interface Card(NICs) of physical PCs to other PCs
+
+Services
+- Tracks constantly changing IP addresses of the Pods; which are ephemeral.
+
+Service -> ClusterIP
+- Is a default service that assigns a cluster-wide IP address for the service
+
+Service -> NodePort
+- Exposes a port on a node allowing direct access to that service.
+- try to avoid
+
+Service -> LoadBalancer
+- Can be exposed to get an IP address that can accept requests to send
+to the services.
+- This is how you can reach services from outside of the Kubernetes cluster
+
+Ingress
+- Allows HTTP/HTTPS routes from outside the cluster to services inside the cluster
+
 
