@@ -147,6 +147,7 @@ helm upgrade -n NAMESPACE RELEASE_NAME_IN_LOCAL name_of_repo_in_local/chart_name
 - updates the release with new values from the VALUES_FILE_NAME.yaml
 example: helm upgrade -n monitoring prometheus-stack prometheus-community/kube-prometheus-stack --values=values.yaml
 
-helm show values prometheus-community/kube-prometheus-stack > prometheus-default-values.yaml
+helm show values RELEASE_NAME_IN_LOCAL/chart_name_version > VALUES_FILE_NAME.yaml
 - shows the values file of the chart. now you can search for the specific kubernetes resource that you want
 and get, say, the password for grafana
+example: helm show values prometheus-community/kube-prometheus-stack > prometheus-default-values.yaml
