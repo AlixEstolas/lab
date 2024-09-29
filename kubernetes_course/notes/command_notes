@@ -38,6 +38,9 @@ kubectl exec -it POD_NAME -- bash
 - seems to work when /bin/bash or /bin/sh doesnt work. sh has some weird behavior so
 let's use bash
 
+kubectl exec -it POD_NAME -- sh -c "COMMAND1 && COMMAND2 %% ETC"
+- multiline command but will exit when done
+
 apt install PACKAGE_NAME
 - for installing things inside a pod
 
@@ -101,3 +104,7 @@ kubectl delete service SERVICE_NAME
 
 kubectl port-forward services/SERVICE_NAME PORT_NUMBER
 - exposes the port of a service
+
+kubectl exec -it POD_NAME -c CONTAINER_NAME -- bash or sh
+- this allows the admin to insert commands to a specific container
+within a pod
