@@ -123,4 +123,25 @@ PersistentVolumeClaim | Procedure Volume Claim
 StorageClass
 - is a resource "k get storageclasses.storage.k8s.io"
 
+Helm Charts
+- are a complete package of kubernetes resources (services, deployments, etc)
+
+Helm Values File
+- how to pass config information to helm installation
+
+Prometheus
+- is a tool for monitoring kubernetes
+- helm install prometheus-stack prometheus-community/kube-prometheus-stack --namespace=monitoring --create-namespace
+
+Monitoring Stack
+- is a tool that gives you metrics of the kubernetes resources
+
+Metrics
+- a measure of the performance and utilization of pods and the hardware
+
+Grafana
+- visualizes the metrics gathered by prometheus
+- to get the values of the password, check the values.yaml
+ex: helm show values prometheus-community/kube-prometheus-stack > prometheus-default-values.yaml
+now you can search for "Grafana" and get the password of it there.
 

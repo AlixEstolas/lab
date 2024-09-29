@@ -130,3 +130,23 @@ K9S COMMAND: shift+F
 - this port forwards your pod
 K9S COMMAND: :{what you want to show; Deployments, Services, Nodes, PersistentVolumeClaims, etc}
 - shows the resource you typed in
+
+helm repo list
+- lists all the local repositories of helm
+
+helm repo add [name_of_repo_in_local REPO_URL]
+- this adds a repository to your local helm directory
+
+helm repo update
+- downloads updates everything in your local helm directory
+
+helm install RELEASE_NAME name_of_repo_in_local/chart_name_version_tag --namespace NAMESPACE --create-namespace
+- installs the repo with the given config. adds the namespace if it doesnt exist.
+
+helm upgrade -n NAMESPACE RELEASE_NAME_IN_LOCAL name_of_repo_in_local/chart_name_version_tag --values=VALUES_FILE_NAME.yaml
+- updates the release with new values from the VALUES_FILE_NAME.yaml
+example: helm upgrade -n monitoring prometheus-stack prometheus-community/kube-prometheus-stack --values=values.yaml
+
+helm show values prometheus-community/kube-prometheus-stack > prometheus-default-values.yaml
+- shows the values file of the chart. now you can search for the specific kubernetes resource that you want
+and get, say, the password for grafana
