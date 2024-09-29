@@ -91,6 +91,7 @@ VIM COMMAND: :%s/STRING_TO_BE_REPLACED/NEW_STRING/g
 
 kubectl expose deployment DEPLOYMENT_NAME --port PORT_NUMBER
 - this will expose the deployment as a SERVICE
+- create service from deployment
 
 kubectl get service SERVICE_NAME -o yaml
 - -o means output, this command will output the yaml file of the service

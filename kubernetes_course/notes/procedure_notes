@@ -1,0 +1,33 @@
+Create a deployment:
+    1. kubectl create deploy DEPLOYMENT_NAME --image=IMAGE_NAME\URL replicas=REPLICA_NUMBER > DEPLOYMENT_FILE_NAME.yaml
+        - create a deployment yaml file
+    2. edit yaml file with your config (proper image url (JAR,WAR,etc), ports, names, labels)
+    3. kubectl apply -f DEPLOYMENT_FILE_NAME.yaml
+        - start the deployment
+
+
+Start a service FROM DEPLOYMENT:
+    1. kubectl create deploy DEPLOYMENT_NAME --image=IMAGE_URL\NAME replicas=REPLICA_NUMBER > DEPLOYMENT_FILE_NAME.yaml
+        - create a deployment yaml file
+    2. edit yaml file
+    3. kubectl apply -f DEPLOYMENT_FILE_NAME.yaml
+        - start the deployment
+    4. kubectl expose deployment DEPLOYMENT_NAME --port:PORT_NUMBER
+        - creates a Service which is an ClusterIP for the deployment
+
+
+Start a service FROM DEPLOYMENT with EXPOSED IP:
+    1. kubectl create deploy DEPLOYMENT_NAME --image=IMAGE_URL\NAME replicas=REPLICA_NUMBER > DEPLOYMENT_FILE_NAME.yaml
+        - create a deployment yaml file
+    2. edit yaml file
+    3. kubectl apply -f DEPLOYMENT_FILE_NAME.yaml
+        - start the deployment
+    4. kubectl expose deployment DEPLOYMENT_NAME --port:PORT_NUMBER
+        - creates a Service which is an ClusterIP for the deployment
+    5. kubectl get service DEPLOYMENT_NAME -o yaml > SERVICE_FILE_NAME.yaml
+        - creates a Service config yaml based on the Service of the Deployment
+    6. edit yaml file of the service config to make it a load balancer
+    7. kubectl apply -f SERVICE_FILE_NAME.yaml
+        - this will overwrite the ClusterIP service of the Deployment; turning it into a LoadBalancer
+    8. kubectl get svc -o wide
+        - shows the details of the services
