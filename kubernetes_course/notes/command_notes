@@ -108,3 +108,25 @@ kubectl port-forward services/SERVICE_NAME PORT_NUMBER
 kubectl exec -it POD_NAME -c CONTAINER_NAME -- bash or sh
 - this allows the admin to insert commands to a specific container
 within a pod
+
+kubectl logs pods/POD_NAME
+- this shows the recent logs of that pod
+
+kubectl logs pods/POD_NAME | less
+- this shows the recent logs of that pod and allow you to
+search using vim
+
+kubectl -n NAMESPACE pods/POD_NAME | less
+- this shows the recent logs of that pod in a namespace
+and allows you to search using vim
+
+K9S COMMAND: shift+S
+- sorts by Status
+K9S COMMAND: shift+A
+- sorts by Age
+K9S COMMAND: /{whatever you want to search}
+- searches the logs for the term you put after the slash
+K9S COMMAND: shift+F
+- this port forwards your pod
+K9S COMMAND: :{what you want to show; Deployments, Services, Nodes, PersistentVolumeClaims, etc}
+- shows the resource you typed in

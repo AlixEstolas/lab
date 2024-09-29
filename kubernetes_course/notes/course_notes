@@ -114,5 +114,13 @@ to the services.
 Ingress
 - Allows HTTP/HTTPS routes from outside the cluster to services inside the cluster
 
+PersistentVolume | Procedure Volumes
+- is like a disk in your system that can be shared but is not omni-accessible
+
+PersistentVolumeClaim | Procedure Volume Claim
+- is like a partition of that disk
+
+StorageClass
+- is a resource "k get storageclasses.storage.k8s.io"
 
 
