@@ -31,3 +31,4 @@ Start a service FROM DEPLOYMENT with EXPOSED IP:
         - this will overwrite the ClusterIP service of the Deployment; turning it into a LoadBalancer
     8. kubectl get svc -o wide
         - shows the details of the services
+    note: if external_ip remains pending, check config and delete svc then apply again
