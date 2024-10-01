@@ -1,0 +1,37 @@
+-----------pgAdmin-------------
+create table TABLE_NAME (
+    CUST_ID int Primary Key,
+    FIRST_NAME varchar(155),
+    LAST_NAME varchar(150),
+    AGE int
+);
+- this is to create a pgAdmin table.
+
+insert into TABLE_NAME values
+(col1, "col2", "col3", col4, col5, etc...);
+- insert without col definitions
+
+insert into TABLE_NAME (col1, col2, col3, col4, col5, etc...) values
+(col1, "col2", "col3", col4, col5, etc...),
+(col1, "col2", "col3", col4, col5, etc...),
+(col1, "col2", "col3", col4, col5, etc...);
+- insert multiple with col definitions. Defining columns is handy because you can
+specify the order, and which columns will be inserted to.
+Ex: insert into TABLE_NAME (col2, col5) values (col2, col5);
+
+copy TABLE_NAME (col1, col2, col3, col4, col5, etc...)
+from 'FILE_PATH.csv' delimiter 'DELIMETER STRING OR CHARACTER' TYPE_OF_FILE header
+- copy from a file to add to the table
+ex: copy customer_table from 'C:\kldfg\sdflgkj\sdfhgs.csv' delimeter ',' csv header;
+ex2: copy customer_table from 'C:\Usswe\Data\copytext.txt' delimiter ',';
+-----------BigQuery------------
+create table PROJECT_NAME.DATABASE_NAME.TABLE_NAME (
+    CUST_ID int64,
+    FIRST_NAME string,
+    LAST_NAME string,
+    AGE int64
+)
+- this is to create a bigquery table. Project Name is
+not necessary but good to do just in case of window context issues
+---------BigQuery CLI-----------
+bq --skip_leading_rows=ROW_NUMBER_WHEN_DATA_STARTS PROJECT_NAME.DATABASE_NAME.TABLE_NAME FILENAME.ext

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Supermart_DB_new">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Data/Supermart_DB_new.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

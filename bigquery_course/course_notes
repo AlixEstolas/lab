@@ -1,0 +1,15 @@
+Primary Key
+- used to identify a row in a table
+Foreign Key
+- references a column in another table
+- almost always a Primary Key of another table
+- almost always used in conjunction with the primary key to form a Composite Key
+Composite Key
+- when a column that is not the Primary Key is used in conjunction with the Primary Key to form a unique
+row identifier
+
+------BigQuery notes: ----------
+NUMERIC
+- NUMERIC must be used for financial matters due to its 38 digits of precision and 9 decimal digits of scale
+PRIMARY KEYS
+- there are NO primary keys or foreign keys in bigquery
