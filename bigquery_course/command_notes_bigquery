@@ -24,6 +24,98 @@ from 'FILE_PATH.csv' delimiter 'DELIMETER STRING OR CHARACTER' TYPE_OF_FILE head
 - copy from a file to add to the table
 ex: copy customer_table from 'C:\kldfg\sdflgkj\sdfhgs.csv' delimeter ',' csv header;
 ex2: copy customer_table from 'C:\Usswe\Data\copytext.txt' delimiter ',';
+
+alter table TABLE_NAME ACTION columnName new_column new_column_properties;
+- editing a column
+ex: alter table TABLE_NAME drop columnName;
+ex2: alter table TABLE_NAME add newColumn varchar(255);
+ex3: alter table TABLE_NAME alter column COLUMN_NAME type varchar(255);
+ex4: alter table TABLE_NAME RENAME COLUMN oldColumnName TO columnNameNew;
+ex5: alter table TABLE_NAME alter column COLUMN_NAME set not null;
+ex6: alter table TABLE_NAME add constraint COLUMN_NAME check (COLUMN_NAME >= 100)
+ex7: alter table TABLE_NAME add primary key(COLUMN_NAME);
+ex8: alter table CHILD_TABLE_NAME add constraint CHILD_TABLE_COLUMN foreign key (COLUMN_FROM_PARENT) references PARENT_TABLE_NAME
+
+select sum(column) from table where expression;
+- sums the results of the query;
+
+select avg(column) from table where expression;
+- averages the results of the query;
+
+select column1, column2 from table where expression group by columnX;
+- groups the results of the query by columnX;
+
+select column1, column2 from table where expression group by columnX having expression_that_includes_columnX;
+- this adds a theoretical where clause to the group by column;
+ex: select Product, SUM(Amount) from Orders group by Product having SUM(Amount) > 150;
+
+select *, case
+            when column_condition then result_literal/result_variable
+            end as ALIAS_NAME
+from TABLE_NAME;
+- this adds an if else to your select query that allows custom values to be outputted in the result.
+ex: select *, case
+                when age<30 then 'Young'
+                when age>60 then 'Senior Citizen'
+                else 'Middle Aged'
+                end as Age_Category
+from Customer;
+
+select C.CustomerName, O.Product from Customers as C, Orders as O;
+- cartesian join. shows everything regardless of relationship
+
+select Customers.CustomerName from Customers
+intersect
+select Passengers.PassengerName from Passengers;
+- shows all records that match the select column of each select statement
+
+select customer_20_60.customer_id, sum(sales)
+from sales_2015
+inner join customer_20_60 on sales_2015.customer_id = customer_20_60.customer_id
+group by customer_20_60.customer_id
+limit 20;
+- get customers and their total amount of $ spent on products
+
+select product.product_id, product.product_name, product.category, sum(sales.sales) as total_sales, sum(sales.quantity) as total_quantity
+from product
+inner join sales
+on product.product_id = sales.product_id
+group by product.product_id
+limit 20;
+- get products and their total sales and total quantity
+
+CREATE INDEX index_name
+ON table_name (column_name);
+- creates index for faster queries
+
+select Customer_Name, Country, Replace(Country,'united states', 'US') as Country_New from customer
+- this replaces the value of the output column
+example: "Customer A, united states of america, US of america" this is what differentiates it from if statements
+
+select Customer_Name || Country || Replace(Country) from Customer;
+- this concatenates the values selected
+
+select Customer_ID, Customer_Name, substring(Customer_ID from 4 for 5) as Customer_ID_New from customer;
+- this substrings customer_id from 4 to 5, totalling 2 characters.
+
+
+select country, string_agg(segment,', ') as Segment from customer group by country;
+- this aggregates all the (expressions) related to the order_id. Group by is mandatory.
+ex: select country, string_agg(distinct(segment),', ') as Segment from customer group by country;
+
+select power(30,2) from table_name;
+- power gives the first parameter an exponent by the second parameter
+
+select CURRENT_TIMESTAMP;
+- get current date+time
+
+select AGE(date1, date2) from table_name;
+- this compares the difference in dates
+ex: select AGE(date) from table_name; this will use the current timestamp
+
+select EXTRACT('month' from CURRENT_DATE);
+- extracts the value of the unit given in the first parameter. in this case it returns the month in numeric form.
+
 -----------BigQuery------------
 create table PROJECT_NAME.DATABASE_NAME.TABLE_NAME (
     CUST_ID int64,
@@ -35,3 +127,16 @@ create table PROJECT_NAME.DATABASE_NAME.TABLE_NAME (
 not necessary but good to do just in case of window context issues
 ---------BigQuery CLI-----------
 bq --skip_leading_rows=ROW_NUMBER_WHEN_DATA_STARTS PROJECT_NAME.DATABASE_NAME.TABLE_NAME FILENAME.ext
+
+select * from DATABASE_NAME.TABLE_NAME where COLUMN_NAME in 20 and 30;
+- this selects rows with the value of the column selected between 20 and 30.
+ex: select * from DATABASE_NAME.TABLE_NAME where COLUMN_NAME in '2016-02-07' and '2014-02-07';
+
+select * from DATABASE_NAME.TABLE_NAME limit ROW_LIMIT;
+- limits the max rows retrieved in the query
+
+select `name with space` from DATABASE_NAME.TABLE_NAME where `name with space` in '2016-02-07' and '2016-03-07';
+- this lets us use a column with a space. use the backtick character.
+
+select DATABASE_NAME.TABLE_1.column1, DATABASE_NAME.TABLE_2.column2 from DATABASE_NAME.TABLE_1 INNER JOIN DATABASE_NAME.TABLE_2 ON DATABASE_NAME.TABLE_1.column3 = DATABASE_NAME.TABLE_2.column3;
+- this outputs the inner part of the venn diagram of both tables.
